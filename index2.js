@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const judgesData = require("./data.json")
+const judgesData = require("./data3.json")
 const data = require("./data3.json")
 
 app.use(express.json());
@@ -35,21 +35,21 @@ Object.entries(data).forEach(([key, judges]) => {
     return res.status(400).json({message:"zone and complex required"})
   }
 
-//   Filter by zone using regex
+
 //   const zone = req.query.zone;
   if (zone) {
     const zoneRegex = new RegExp(zone, 'i');
     filteredJudges = filteredJudges.filter(judge => zoneRegex.test(judge.zone));
   }
 
-  // Filter by complex using regex
+
 //   const complex = req.query.complex;
   if (complex) {
     const complexRegex = new RegExp(complex, 'i');
     filteredJudges = filteredJudges.filter(judge => complexRegex.test(judge.complex));
   }
 
-  // Search by name or designation using regex
+  
   const search = req.query.search;
   if (search) {
     const searchRegex = new RegExp(search, 'i');
